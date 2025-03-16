@@ -1,0 +1,64 @@
+/* Нормализация блочной модели */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*Исключение внутренних отступов слева, кто в них нуждается*/
+:where(ul,ol):where([class]){
+    padding-left: 0;
+}
+
+/*Исключение внешних отступов */
+body,
+:where(blockquote,figure):where([class]){
+    margin:0;
+}
+
+/*Исключение внешних отступов вертикали*/
+:where(h1,h2,h3,h4,h5,h6,p,ul,ol,dl):where([class]){
+    margin-block:0;
+}
+:where(ul[class]){
+    list-style:none;
+}
+
+/*Улучшение работы с изображениями*/
+img{
+    display: block;
+    max-width: 100%;
+}
+
+/*Наследование шрифтов для полей ввода*/
+input,textarea,select,button {
+    font:inherit;
+}
+
+html{
+    /*Для случая, когда будет необходимо "прижать" футер к низу сайта*/
+    height:100%;
+
+    /*Для плавного скролла страницы*/
+    scroll-behavior: smooth;
+}
+
+body{
+    /*Для случая, когда будет необходимо "прижать" футер к низу сайта*/
+    min-height: 100%;
+
+    /*Межстрочнчый интервал*/
+    line-height: 1.5;
+}
+
+/*Исключение всех анимаций и переходов для людей, у которых установлены
+настройки в браузере по предпочтению*/
+
+@media (prefers-reduced-motion: reduce){
+    *{
+        animation-duration: 0.01ms !important;
+        animation-iteration-count:  1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
